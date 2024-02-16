@@ -31,12 +31,17 @@ pool:
   vmImage: ubuntu-latest
 steps:
   - script: |
-      curl -Lo bicep-cli https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
-      chmod +x ./bicep-cli
-      sudo mv ./bicep-cli /usr/local/bin/bicep
+      curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+      # Mark it as executable
+      chmod +x ./bicep
+      # Add bicep to your PATH (requires admin)
+      sudo mv ./bicep /usr/local/bin/bicep
+      # Verify you can now access the 'bicep' command
+      bicep --help
+      # Done!
     displayName: Install Bicep CLI
   - script: |
-      bicep build vnet.bicep
+      bicep build $(Build.Repository.LocalPath)\bicep\vnet.bicep
     displayName: Compile Bicep to ARM Template
   - task: AzureCLI@2
     inputs:
@@ -44,5 +49,5 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: >
-        az deployment group create --resource-group BicepRG --template-file \deployment\azure\vnet.json --parameters vnetName=BicepVNetName location=eastus
+        az deployment group create --resource-group BicepRG --template-file $(Build.Repository.LocalPath)\deployment\azure\vnet.json --parameters vnetName=BicepVNetName location=eastus
     displayName: Deploy Virtual Network with ARM Template
