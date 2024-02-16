@@ -25,7 +25,8 @@
 #   displayName: 'Deploy Virtual Network with ARM Template'
 
 
-trigger: null
+trigger: 
+  - main
 pool:
   vmImage: ubuntu-latest
 steps:
