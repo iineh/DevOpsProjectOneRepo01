@@ -30,7 +30,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 steps:
-  - script: >
+  - script: |
       curl -Lo bicep-cli https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
       chmod +x ./bicep-cli
       sudo mv ./bicep-cli /usr/local/bin/bicep
