@@ -1,14 +1,14 @@
 trigger:
-- main
+# - main
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
 - script: |
-    curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
-    chmod +x ./bicep
-    sudo mv ./bicep /usr/local/bin/bicep
+    curl -Lo bicep-cli https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+    chmod +x ./bicep-cli
+    sudo mv ./bicep-cli /usr/local/bin/bicep
   displayName: 'Install Bicep CLI'
 
 - script: |
