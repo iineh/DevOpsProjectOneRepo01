@@ -17,7 +17,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: '<YourServiceConnectionName>'
+    azureSubscription: 'supporttestersp2'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
