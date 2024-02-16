@@ -41,7 +41,7 @@ steps:
       # Done!
     displayName: Install Bicep CLI
   - script: |
-      bicep build $(Build.Repository.LocalPath)\bicep\vnet.bicep
+      bicep build "$(Build.Repository.LocalPath)/bicep/vnet.bicep"
     displayName: Compile Bicep to ARM Template
   - task: AzureCLI@2
     inputs:
